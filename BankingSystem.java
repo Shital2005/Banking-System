@@ -1,5 +1,7 @@
 import java.util.Scanner;
 abstract class BankAccount{
+    final int rateSA =4;
+    final int rateCA =6;
     int accNo,balance;
     String name ,city;
     Scanner sc = new Scanner(System.in);
@@ -45,6 +47,13 @@ class SavingAccount extends BankAccount{
         
     }
 }
+class Interest2 extends SavingAccount{
+    public void interest(){
+        int amt = (balance*(rateSA/100));
+        System.out.println("Total interest is : " + amt);
+    }
+}
+
 
 class CurrentAccount extends BankAccount{
     public void deposit(){
@@ -64,6 +73,12 @@ class CurrentAccount extends BankAccount{
             System.out.println("Insufficient balance");
         }
         
+    }
+}
+class Interest1 extends CurrentAccount{
+    public void interest(){
+        int amt = (balance*(rateCA/100));
+        System.out.println("Total interest is : " + amt);
     }
 }
 
@@ -87,13 +102,15 @@ class BankingSystem{
             System.out.println("2. Show Customer data ");
             System.out.println("3. Deposit  ");
             System.out.println("4. Withdraw ");
-            System.out.println("5.Exit");
+            System.out.println("5. Interest ");
+            System.out.println("0.Exit");
             int n = sc1.nextInt();
             switch(n){
                 case 1: ca.addCustData();break;
                 case 2: ca.showCustData();break;
                 case 3: ca.deposit();break;
                 case 4: ca.withdraw();break;
+                case 5: new Interest1().interest(); break;
                 case 0: sc1.close();System.exit(0);break;
                 
             }
@@ -105,13 +122,15 @@ class BankingSystem{
             System.out.println("2. Show Customer data ");
             System.out.println("3. Deposit  ");
             System.out.println("4. Withdraw ");
-            System.out.println("5.Exit");
+            System.out.println("5. Interest ");
+            System.out.println("0.Exit");
             int n = sc1.nextInt();
             switch(n){
                 case 1: sa.addCustData();break;
                 case 2: sa.showCustData();break;
                 case 3: sa.deposit();break;
                 case 4: sa.withdraw();break;
+                case 5: new Interest2().interest(); break;
                 case 0: sc1.close();System.exit(0);break;
                 
             }
